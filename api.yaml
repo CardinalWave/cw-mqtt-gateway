@@ -1,0 +1,105 @@
+asyncapi: 3.0.0
+
+info:
+  title: cw-mqtt-gateway
+  version: 1.0.0
+  description: CardinalWave Mqtt Gateway - Serviço responsável por receber as mensagens do broker e redirecionar para o gateway
+
+servers:
+  dev:
+    host: 192.168.12.1:1883
+    protocol: mqtt
+    description: CardinalWave Mqtt Gateway
+
+channels:
+
+  user:
+    address: /esp_ID/session_ID/login
+    messages:
+      user:
+        description: Retorna informações sobre o User
+        payload:
+          $ref: '#/components/schemas/Session'
+
+  login:
+    address: /esp_ID/session_ID/login
+    messages:
+      login:
+        description: Realiza o Login do usuario
+        payload:
+          $ref: '#/components/schemas/Login'
+
+  
+
+operations: 
+  user:
+    action: send
+    channel: 
+      $ref: '#/channels/user'
+  
+  login:
+    action: receive
+    channel: 
+      $ref: '#/channels/login'
+  
+
+components:
+  
+  messages:
+    
+    login:
+      payload:
+        type: object
+        properties:
+            Login:
+              $ref: '#/components/schemas/Login'
+
+    user:
+      payload:
+        type: object
+        properties:
+          User:
+            $ref: '#/components/schemas/User'
+  schemas:
+    Session:
+      type: object
+      properties:
+        device: 
+          type: string 
+          description: ID do Dispositivo de Comunicação
+          example: "esp8266_01"
+        session_id:
+          type: string
+          description: ID gerado pelo WebSocketClient
+          example: session_Id6xbdsruj2
+        action:
+          type: string
+          description: Ação
+          example: "login"
+        payload:
+            description: Objeto da Ação
+            $ref: '#/components/schemas/User'
+
+    Login:
+      type: object 
+      properties:
+        usename: 
+          type: string
+          description: Nome utizado para logar
+          example: "Lua22"
+        password:
+          type: string
+          description: Senha do usuario
+          example: "password"
+    User:
+      type: object 
+      properties:
+        token: 
+          type: string 
+          description: token gerando no cw-auth-service
+          example: "3aff140a-38a7-427d-bd8f-664c8d0425ab"
+        username: 
+          type: string 
+          description: Nome do Usuario cadastrado
+          example: "Lua"
+          additionalProperties: false
