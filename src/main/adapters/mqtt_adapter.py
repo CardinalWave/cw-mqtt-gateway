@@ -5,13 +5,13 @@ def mqtt_adapter(msg: any) -> any:
 
     parts = msg.topic.split('/')
     payload_obj = json.loads(msg.payload.decode("utf-8"))["payload"]
-    dispositivo = parts[1]
+    device_id = parts[1]
     sessao = parts[2]
     action = parts[3]
 
-    if dispositivo == "server":
+    if device_id == "server":
         action = "server"
 
-    session = Session(sessao, action, payload_obj)
+    session = Session(device_id, sessao, action, payload_obj)
 
     return session

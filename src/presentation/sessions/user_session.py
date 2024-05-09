@@ -5,14 +5,16 @@ from src.presentation.interface.session_interface import SessionInterface
 
 class UserSession(SessionInterface):
 
-    def __init__(self, session_id: str, action: str, user: User) -> Session:
+    def __init__(self, device_id: str, session_id: str, action: str, user: User) -> Session:
+        self.device_id = device_id,
         self.session_id = session_id,
         self.action = action,
         self.user = user
 
     def package(self):
-        Session(self.session_id, self.action, self.user)
+        Session(self.device_id, self.session_id, self.action, self.user)
         response = {
+                        "device_id": self.device_id[0],
                         "session_id": self.session_id[0],
                         "action": self.action[0],
                         "payload": {

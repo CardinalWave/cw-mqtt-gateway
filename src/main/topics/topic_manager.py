@@ -10,7 +10,7 @@ class TopicManager:
         if "login" == session.action[0]:
             try:
                 login = Login(session.payload["username"], session.payload["password"])
-                return user_login_composer(session.session_id[0], login)
+                return user_login_composer(session.device_id, session.session_id[0], login)
             except Exception as exception:
                 raise exception
         elif "server" == session.action[0]:
