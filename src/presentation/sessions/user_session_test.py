@@ -1,11 +1,11 @@
-from src.presentation.sessions.user_session import UserSession
 from src.domain.models.users import User
+from src.presentation.sessions.user_session import UserSession
 
 def test_user_session_package():
 
     user_mock = User("5ffe850e-8da6-4590-9ae6-b2c39646c79d", "Lua")
 
-    user_session = UserSession("esp_test", "sessionid_6xbdsruj2", "test", user_mock).package()
+    user_session = UserSession(["esp_test"], "sessionid_6xbdsruj2", "test", user_mock).package()
 
     response_mock = {
                         'device_id': 'esp_test',
