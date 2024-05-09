@@ -1,3 +1,5 @@
+#pylint: disable=unused-argument
+
 import paho.mqtt.client as mqtt
 
 from src.main.topics.topic_subscribe import TopicSubscribe
