@@ -1,0 +1,13 @@
+name: Pipeline
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs_on: ubuntu-latest
+
+    steps:
+      - name: Play command!
+        run: echo $(pwd)
+
+      - name: Run other command!
+        run: echo $(ls)
