@@ -8,4 +8,5 @@ class UserLogin(UserLoginInterface):
     @classmethod
     def login(cls, login: Login) -> User:
         token = str(uuid.uuid4())
-        return User(token, login.username[0])
+        response = User(token, login.username[0])
+        return response

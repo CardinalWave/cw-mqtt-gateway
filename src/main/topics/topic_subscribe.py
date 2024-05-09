@@ -8,7 +8,7 @@ class TopicSubscribe:
     def call_service(session: Session):
         if "login" == session.action[0]:
             try:
-                login = Login(session.payload.username[0], session.payload.password[0])
+                login = Login(session.payload["username"], session.payload["password"])
                 return user_login_composer(login)
             except Exception as exception:
                 raise exception

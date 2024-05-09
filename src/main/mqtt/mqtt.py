@@ -11,14 +11,11 @@ def on_connect(client, userdata, flags, reason_code):
 
 
 def on_message(client, userdata, msg):
-    topic_manager = TopicSubscribe()
-    topic_manager.call_service(mqtt_adapter(msg))
+    topic_subscribe = TopicSubscribe()
+    topic_subscribe.call_service(mqtt_adapter(msg))
 
 
 def on_publish(client, userdata, result):
     print("data published \n")
 
 mqttc = mqtt.Client()
-mqttc.on_connect = on_connect
-mqttc.on_message = on_message
-mqttc.on_publish = on_publish
