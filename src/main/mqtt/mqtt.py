@@ -13,8 +13,10 @@ def on_message(client, userdata, msg):
     response = topic_manager.call_service(mqtt_adapter(msg))
     json_payload = json.dumps(response)
     if json_payload is not None and response is not None:
-        print(json_payload)
-        client.publish("/server/session_id2103912kldsad/login", json_payload)
+        session_id = response["session_id"]
+        action = response["action"]
+        topic = f"/server/{session_id}/{action}"
+        client.publish(topic, json_payload)
 
 def on_publish(client, userdata, result):
     # print("data published \n")
