@@ -3,11 +3,11 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs_on: ubuntu-latest
+    runs_on: "ubuntu-20.04"
 
     steps:
-      - name: Play command!
-        run: echo $(pwd)
-
-      - name: Run other command!
-        run: echo $(ls)
+      - name: "Install Python 3.11"
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-python@v4"
+        with: 
+          python-version: "3.11"
