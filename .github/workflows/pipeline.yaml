@@ -25,5 +25,6 @@ jobs:
           pylint --rcfile=pylint --rcfile=.pylintrc src
           pytest -s -v
       - name: Run Pytest
+        run: |
           source venv/bin/activate
           pytest -s -v
