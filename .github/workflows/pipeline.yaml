@@ -19,4 +19,10 @@ jobs:
           source venv/bin/activate
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pylint --rcfile=pylint --rcfile=.pylintrc src
+      - name: Run Pylint and Pytest
+        run: |
+          source venv/bin/activate
+          pylint --rcfile=pylint --rcfile=../.pylintrc src
+          pytest -s -v
+
+
