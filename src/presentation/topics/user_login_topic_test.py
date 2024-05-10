@@ -1,13 +1,12 @@
-#pylint: disable=trailing-comma-tuple
+# pylint: disable=trailing-comma-tuple
 from src.domain.models.users import User
 from src.domain.models.login import Login
 from src.presentation.topics.user_login_topic import UserLoginTopic
 from src.data.use_cases.user_login import UserLogin
 
 
-
 def test_handle():
-    mock_login = Login("Lua", "password");
+    mock_login = Login("Lua", "password")
 
     use_case = UserLogin()
 

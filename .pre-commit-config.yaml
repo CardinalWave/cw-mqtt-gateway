@@ -13,7 +13,19 @@ repos:
             "--rcfile=.pylintrc", # Link to your config file
             "--load-plugins=pylint.extensions.docparams", # Load an extension
           ]
-    
+
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        entry: ruff
+        language: system
+        types: [python]
+        args: 
+          [
+            "format"
+          ]
+
   - repo: local
     hooks:
       - id: requirements
