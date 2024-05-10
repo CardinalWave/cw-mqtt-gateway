@@ -7,9 +7,9 @@ jobs:
     steps:
       - name: "Install Python 3.11"
         uses: "actions/checkout@v3"
-      - uses: "actions/setup-python@v4"
+      - name: "Setup Python 3.11"
+        uses: "actions/setup-python@v4"
         with: 
           python-version: "3.11"
-
       - name: Display Python version
-          run: python -c "import sys; print(sys.version)"
+        run: python -c "import sys; print(sys.version)"
