@@ -19,7 +19,9 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
           pip install pytest
-      - name: Run pylint
-        run: pylint src
       - name: Run pytest
-        run: pytest
+        run: pytest -s -v
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff --output-format=github . format
