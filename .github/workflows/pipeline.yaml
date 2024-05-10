@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs_on: "ubuntu-20.04"
+    runs-on: "ubuntu-20.04"
     steps:
       - name: "Install Python 3.11"
         uses: "actions/checkout@v3"
