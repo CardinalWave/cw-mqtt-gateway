@@ -21,5 +21,7 @@ jobs:
           pip install -r requirements.txt
           pip install pylint
       - name: Python linter
-        id: pylint
-        uses: docker://reasonsoftware/action-pylint:v1
+        uses: Silleellie/pylint-github-action@v2
+        with:
+          lint-path: src  # lint src package
+          python-version: 3.11  # python version which will lint the package
