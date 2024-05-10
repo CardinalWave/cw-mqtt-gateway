@@ -25,5 +25,5 @@ jobs:
       - name: Cat .pylintrc
         run: cat .pylintrc
       - name: Run Pylint
-        run: python3 pylint --rcfile=.pylintrc
+        run: python3 pylint --rcfile=pylint --rcfile=$(pwd)/.pylintrc .
 
