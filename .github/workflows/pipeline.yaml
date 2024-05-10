@@ -20,8 +20,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pylint
-      - name: Python linter
-        uses: Silleellie/pylint-github-action@v2
+      - name: CodeQuality
+        uses: JacobDomagala/StaticAnalysis@master
         with:
-          lint-path: src  # lint src package
-          python-version: 3.11  # python version which will lint the package
+          language: "Python"
+          pylint_args: "--rcfile=.pylintrc --recursive=true"
+          python_dirs: "src"
