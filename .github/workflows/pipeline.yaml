@@ -15,7 +15,7 @@ jobs:
         run: python -c "import sys; print(sys.version)"
       - name: Install venv
         run: pip install virtualenv
-      - name: Run venv
-        run: source venv/bin/activate
-      - name: Install requirements
-        run: pip install -r requiriments.txt
+      - name: Activate venv and Install requirements
+        run: |
+          source venv/bin/activate
+          pip install -r requirements.txt
