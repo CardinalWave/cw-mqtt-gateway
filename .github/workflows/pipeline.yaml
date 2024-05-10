@@ -5,29 +5,20 @@ jobs:
   test:
     runs-on: "ubuntu-20.04"
     steps:
-      # Instalação do Python e configuração da versão
       - name: "Install Python 3.11"
         uses: "actions/checkout@v3"
-
       - name: "Setup Python 3.11"
         uses: "actions/setup-python@v4"
         with: 
           python-version: "3.11.2"
-
-      # Exibe a versão do Python
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-
-      # Cria a virtual environment, instala as dependências e o Ruff
       - name: Install venv and Install requirements
         run: |
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
-
-      - name: Config Pylint
-        uses: ricardochaves/python-lint@v1.4.0
-        with:
-          use-pylint: true
-      - name: Run pylint
-        run: pylint src
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff check src
