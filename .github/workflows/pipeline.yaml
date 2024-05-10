@@ -13,10 +13,12 @@ jobs:
           python-version: "3.11.2"
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-      - name: Install venv
-        run: pip install virtualenv
-      - name: Activate venv and Install requirements
+      - name: Install venv and Install requirements
         run: |
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
+      - name: Run pytest
+        run: pytest -s -v
+      - name: Run pylint
+        run: pylint src
