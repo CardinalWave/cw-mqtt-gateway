@@ -24,11 +24,10 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
-          pip install ruff
 
-      # Executa o Ruff para verificar o estilo do código
-      - name: Run Ruff
+      - name: Config Pylint
         uses: ricardochaves/python-lint@v1.4.0
         with:
           use-pylint: true
+      - name:
         run: pylint src
