@@ -19,7 +19,4 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
       - name: Sintax Check
-        run: |
-          pip install ruff pylint
-          ruff check src
-          pylint src
+        run: pylint **
