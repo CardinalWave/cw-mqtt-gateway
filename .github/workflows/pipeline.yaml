@@ -19,11 +19,6 @@ jobs:
           source venv/bin/activate
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pylint
-      - name: List Files
-        run: ls -la
-      - name: Cat .pylintrc
-        run: cat .pylintrc
       - name: Run Pylint
-        run: python3 pylint --rcfile=pylint --rcfile=$(pwd)/.pylintrc .
+        run: python3 pylint --rcfile=pylint --rcfile=$(pwd)/.pylintrc src
 
