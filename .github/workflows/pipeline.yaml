@@ -17,5 +17,6 @@ jobs:
         run: pip install virtualenv
       - name: Activate venv and Install requirements
         run: |
+          python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
