@@ -21,4 +21,6 @@ jobs:
           pip install -r requirements.txt
           pip install pylint
       - name: List Files
-        run: ls -l
+        run: ls -la
+      - name: Cat .pylintrc
+        run: cat .pylintrc
