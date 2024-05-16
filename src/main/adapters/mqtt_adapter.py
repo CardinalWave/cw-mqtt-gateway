@@ -4,14 +4,19 @@ from src.domain.models.sessions import Session
 def mqtt_adapter(msg: any) -> any:
 
     parts = msg.topic.split('/')
+
     payload_obj = json.loads(msg.payload.decode("utf-8"))
+
+    print(payload_obj)
+
     device_id = parts[1]
     sessao = parts[2]
     action = parts[3]
+    request = payload_obj['payload']
 
     if device_id == "server":
         action = "server"
 
-    session = Session(device_id, sessao, action, payload_obj)
+    session = Session(device_id, sessao, action, request)
 
     return session
