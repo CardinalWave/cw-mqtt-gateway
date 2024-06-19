@@ -4,8 +4,10 @@ from src.main.mqtt.mqtt import mqttc, on_connect, on_message, on_publish
 
 if __name__ == "__main__":
 
-    mqtt_broker_ip = os.getenv('MQTT_BROKER_IP')
-    mqtt_broker_port = int(os.getenv('MQTT_BROKER_PORT'))
+    # ENV MQTT_BROKER_IP=192.168.12.1
+    # ENV MQTT_BROKER_PORT=1883
+    mqtt_broker_ip = '192.168.15.69'
+    mqtt_broker_port = int(1883)
 
     connected = False
 
