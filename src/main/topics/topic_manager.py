@@ -9,7 +9,7 @@ class TopicManager:
         if "login" == session.action[0]:
             try:
                 payload = session.payload
-                login = Login(payload['username'], payload['password'])
+                login = Login(payload['email'], payload['password'])
                 return user_login_composer(session.device_id, session.session_id[0], login)
             except Exception as exception:
                 raise exception
