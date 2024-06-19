@@ -1,19 +1,22 @@
 import os
 import time
 from src.main.mqtt.mqtt import mqttc, on_connect, on_message, on_publish
+from src.config.config import Config
 
 if __name__ == "__main__":
-
+    
+    BASE_URL = Config.CW_CENTRAL_SERVICE
     # ENV MQTT_BROKER_IP=192.168.12.1
     # ENV MQTT_BROKER_PORT=1883
-    mqtt_broker_ip = '192.168.15.69'
-    mqtt_broker_port = int(1883)
+    MQTT_BROKER_IP = Config.MQTT_BROKER_IP
+    MQTT_BROKER_PORT = Config.MQTT_BROKER_PORT
+    MQTT_TIMESTAMP = Config.MQTT_TIMESTAMP
 
     connected = False
 
     while not connected:
         try:
-            mqttc.connect(mqtt_broker_ip, mqtt_broker_port, 60)
+            mqttc.connect(MQTT_BROKER_IP, MQTT_BROKER_PORT, 60)
             mqttc.subscribe("#");
             mqttc.on_connect = on_connect
             mqttc.on_message = on_message
