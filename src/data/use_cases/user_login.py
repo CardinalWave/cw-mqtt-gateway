@@ -1,20 +1,21 @@
 import json
-import http.client, urllib.parse
+import http.client
 from src.domain.use_cases.user_login import UserLogin as UserLoginInterface
 from src.domain.models.users import User
 from src.domain.models.login import Login
 from src.config.config import Config
 
 class UserLogin(UserLoginInterface):
-    BASE_URL = Config.CW_CENTRAL_SERVICE
+    cw_central_service = Config.CW_CENTRAL_SERVICE
 
     @classmethod
     def login(cls, login: Login) -> User:
-        url = cls.BASE_URL
-        return cls._request_central(login, url)
+        instnace = cls()
+        return instnace._request_central(login=login)
 
-    def _request_central(login: Login, url) -> User:
+    def _request_central(self, login: Login) -> User:
         try:
+            url = self.cw_central_service
             headers = {
                 'Content-type': 'application/json'
             }
@@ -35,4 +36,4 @@ class UserLogin(UserLoginInterface):
 
             return User(token=json_data['token'][0], username=json_data['username'])
         except Exception as error:
-            raise ValueError(f"Login error {error}")
+            raise ValueError(f"Login error {error}") from error

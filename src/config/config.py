@@ -10,7 +10,7 @@ class Config:
     MQTT_TIMESTAMP = os.getenv('MQTT', 'MQTT_TIMESTAMP')
     CW_CENTRAL_SERVICE = config['CW_CENTRAL_SERVICE']['BaseURL']
 
-    # From Dockerfile    
+    # From Dockerfile
     MQTT_BROKER_IP = os.getenv('MQTT_BROKER_IP', MQTT_BROKER_IP)
     MQTT_BROKER_PORT = os.getenv('MQTT_BROKER_PORT', MQTT_BROKER_PORT)
     MQTT_TIMESTAMP = os.getenv('MQTT_TIMESTAMP', MQTT_TIMESTAMP)

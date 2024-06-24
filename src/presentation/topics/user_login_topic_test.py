@@ -1,6 +1,6 @@
-#pylint: disable=trailing-comma-tuple
-import pytest
+#pylint: disable=trailing-comma-tuple,redefined-outer-name
 from unittest.mock import patch
+import pytest
 from src.domain.models.users import User
 from src.domain.models.login import Login
 from src.presentation.topics.user_login_topic import UserLoginTopic
@@ -18,7 +18,7 @@ def mock_login():
 
 @patch("src.data.use_cases.user_login.UserLogin.login")
 def test_handle_login(mock_login, mock_user):
-    
+
     login = Login(email=mock_login.email, password=mock_login.password)
     mock_login.return_value = mock_user
 

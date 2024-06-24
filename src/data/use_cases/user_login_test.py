@@ -1,6 +1,7 @@
-import pytest
+#pylint: disable=redefined-outer-name
 import json
 from unittest.mock import patch, Mock
+import pytest
 from src.domain.models.users import User
 from src.domain.models.login import Login
 from src.data.use_cases.user_login import UserLogin
@@ -39,6 +40,6 @@ def test_user_login(mock_http_conn, mock_login, mock_user):
         json.dumps({
             'email': mock_login.email,
             'password': mock_login.password
-        }), 
+        }),
         {'Content-type': 'application/json'}
     )
