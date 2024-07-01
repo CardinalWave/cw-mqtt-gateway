@@ -25,7 +25,7 @@ def test_handle_login(mock_login, mock_user):
     use_case = UserLogin()
 
     user_login_channel = UserLoginTopic(use_case)
-    response = user_login_channel.handle(login)
+    response = user_login_channel.handle(login) 
 
     assert isinstance(response, User)
     assert response.token == mock_user.token
