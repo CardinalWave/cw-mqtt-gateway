@@ -17,7 +17,7 @@ if __name__ == "__main__":
     while not connected:
         try:
             mqttc.connect(MQTT_BROKER_IP, MQTT_BROKER_PORT, 60)
-            mqttc.subscribe("#");
+            mqttc.subscribe("#")
             mqttc.on_connect = on_connect
             mqttc.on_message = on_message
             mqttc.on_publish = on_publish

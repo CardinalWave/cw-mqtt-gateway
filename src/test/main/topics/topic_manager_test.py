@@ -8,7 +8,7 @@ def test_call_service_login():
     login_mock = {"email":"lua@outlook.com", "password":"password"}
     session_mock = Session("esp8266_01", "sessionid_6xbdsruj2", "login", login_mock)
 
-    topic_manager = TopicManager();
+    topic_manager = TopicManager()
     response = topic_manager.call_service(session_mock)
 
     assert response["session_id"] == session_mock.session_id[0]

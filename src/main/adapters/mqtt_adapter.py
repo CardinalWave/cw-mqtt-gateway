@@ -7,16 +7,14 @@ def mqtt_adapter(msg: any) -> any:
 
     payload_obj = json.loads(msg.payload.decode("utf-8"))
 
-    print(payload_obj)
-
     device_id = parts[1]
-    sessao = parts[2]
+    session_id = parts[2]
     action = parts[3]
     request = payload_obj['payload']
 
     if device_id == "server":
         action = "server"
 
-    session = Session(device_id, sessao, action, request)
+    session = Session(device_id, session_id, action, request)
 
     return session
