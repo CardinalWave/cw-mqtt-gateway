@@ -1,44 +1,48 @@
 import datetime
-
 from src.main.logs.log_handler import logger
-from src.domain.models.sessions import Session
+
+SERVICE = "cw-mqtt-service"
+IP = "192.168.15.69"
+PORT = "0000"
+
+LOCAL_SERVICE = f'{SERVICE}:{IP}:{PORT}'
 
 
-def log_session(session: Session, action: str):
-    log_payload = {}
-    log_payload['time'] = datetime.datetime.now()
-    log_payload['service'] = "cw-message-service:ip_service:0000"
-    log_payload['action'] = action
-    # log_payload['payload'] = str(session)
-
+def log_session(session: any, action: str):
+    log_payload = {
+        'time': datetime.datetime.now(),
+        'service': LOCAL_SERVICE,
+        'action': action,
+        'payload': str(session)
+    }
     logger.info(log_payload)
 
 
-def log_error(error, message: str):
-    log_payload = {}
-    log_payload['time'] = datetime.datetime.now()
-    log_payload['service'] = "cw-message-service:ip_service:0000"
-    log_payload['error'] = error
-    log_payload['message'] = message
-
+def log_error(error: any, message: str):
+    log_payload = {
+        'time': datetime.datetime.now(),
+        'service': LOCAL_SERVICE,
+        'error': str(error),
+        'message': message
+    }
     logger.error(log_payload)
 
 
-def log_warring(error, message: str):
-    log_payload = {}
-    log_payload['time'] = datetime.datetime.now()
-    log_payload['service'] = "cw-message-service:ip_service:0000"
-    log_payload['error'] = error
-    log_payload['message'] = message
-
+def log_warning(error: any, message: str):
+    log_payload = {
+        'time': datetime.datetime.now(),
+        'service': LOCAL_SERVICE,
+        'error': str(error),
+        'message': message
+    }
     logger.warning(log_payload)
 
 
-def log_critical(error, message: str):
-    log_payload = {}
-    log_payload['time'] = datetime.datetime.now()
-    log_payload['service'] = "cw-message-service:ip_service:0000"
-    log_payload['payload'] = error
-    log_payload['payload']['message'] = message
-
+def log_critical(error: any, message: str):
+    log_payload = {
+        'time': datetime.datetime.now(),
+        'service': LOCAL_SERVICE,
+        'error': str(error),
+        'message': message
+    }
     logger.critical(log_payload)
