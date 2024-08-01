@@ -2,6 +2,7 @@
 
 
 class User:
-    def __init__(self, token: str, username: str) -> None:
-        self.token = token,
+    def __init__(self, token: str, username: str, email: str) -> None:
+        self.token = token
         self.username = username
+        self.email = email

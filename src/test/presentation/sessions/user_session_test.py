@@ -1,5 +1,5 @@
 from src.domain.models.users import User
-from src.presentation.sessions.user_session import UserSession
+from src.presentation.sessions.user.user_session import UserSession
 
 def test_user_session_package():
 
