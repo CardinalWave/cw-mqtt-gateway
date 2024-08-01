@@ -10,11 +10,11 @@ def mqtt_adapter(msg: any) -> any:
     device_id = parts[1]
     session_id = parts[2]
     action = parts[3]
-    request = payload_obj['payload']
+    payload = payload_obj['payload']
 
     if device_id == "server":
         action = "server"
 
-    session = Session(device_id, session_id, action, request)
+    session = Session(device_id, session_id, action, payload)
 
     return session
