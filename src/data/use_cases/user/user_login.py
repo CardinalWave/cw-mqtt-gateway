@@ -4,7 +4,7 @@ from src.domain.models.users import User
 from src.domain.models.login import Login
 from src.config.config import Config
 from src.domain.use_cases.central.central_conn import CentralConn
-from src.main.logs.logs import log_error
+from src.main.logs.logs import log_session
 
 
 class UserLogin(UserLoginInterface):
@@ -20,7 +20,9 @@ class UserLogin(UserLoginInterface):
             'email': login.email,
             'password': login.password
         })
-        log_error(error="login", message=str(params))
+        log_session(session=params, action="user_login")
         json_data = self.__central_conn.request(params=params, action="/user/login")
-        user = User(token=json_data['payload'], username=json_data['payload']['username'])
+        user = User(token=json_data['payload']['token'],
+                    email=json_data['payload']['email'],
+                    username=json_data['payload']['username'])
         return user

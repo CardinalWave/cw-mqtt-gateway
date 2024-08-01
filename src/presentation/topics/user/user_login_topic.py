@@ -11,5 +11,4 @@ class UserLoginTopic(TopicInterface):
 
     def handle(self, _input: Login) -> User:
         response = self.__use_case.login(_input)
-        print(response)
         return response

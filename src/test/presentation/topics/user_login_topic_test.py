@@ -1,9 +1,8 @@
 #pylint: disable=trailing-comma-tuple,redefined-outer-name
-from unittest.mock import patch
 import pytest
 from src.domain.models.users import User
 from src.domain.models.login import Login
-from src.presentation.topics.user_login_topic import UserLoginTopic
+from src.presentation.topics.user.user_login_topic import UserLoginTopic
 from src.test.data.mocks.user_login import UserLoginSpy
 
 
