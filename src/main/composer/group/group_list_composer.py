@@ -4,11 +4,11 @@ from src.presentation.sessions.group.group_list_session import GroupListSession
 from src.presentation.topics.group.group_list_topic import GroupListTopic
 
 
-def group_list_composer(session_id: str, device_id: str, action: str, user: any):
+def group_list_composer(session_id: str, device_id: str, action: str, token: any):
     central_conn = CentralConn()
     use_case = GroupList(central_conn)
     topic = GroupListTopic(use_case)
-    list_group = topic.handle(user)
+    list_group = topic.handle(token)
     session = GroupListSession(session_id=session_id,
                                device_id=device_id,
                                action=action,

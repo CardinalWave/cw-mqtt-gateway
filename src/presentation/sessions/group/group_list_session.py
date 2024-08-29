@@ -5,7 +5,7 @@ from src.presentation.interface.session_interface import SessionInterface
 
 class GroupListSession(SessionInterface):
 
-    def __init__(self, device_id: str, session_id: str, action: str, list_group: list[Group]):
+    def __init__(self, session_id: str, device_id: str, action: str, list_group: list[Group]):
         self.device_id = device_id
         self.session_id = session_id
         self.action = action

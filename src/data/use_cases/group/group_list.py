@@ -10,11 +10,9 @@ class GroupList(GroupListInterface):
     def __init__(self, central_conn: CentralConn):
         self.__central_conn = central_conn
 
-    def group_list(self, user: User) -> list[Group]:
+    def group_list(self, token: str ) -> list[Group]:
         params = json.dumps({
-            'token': user.token,
-            'email': user.email,
-            'username': user.username
+            'token': token
         })
         json_data = self.__central_conn.request(params=params, action="/group/list")
         formated_group_list = self.__format_list(json_list=json_data['payload'])
