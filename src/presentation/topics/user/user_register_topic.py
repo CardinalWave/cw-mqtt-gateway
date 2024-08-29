@@ -9,4 +9,5 @@ class UserRegisterTopic(TopicInterface):
         self.__use_case = use_case
 
     def handle(self, _input: Register):
-        self.__use_case.register(_input)
+        response = self.__use_case.register(_input)
+        return response
