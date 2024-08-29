@@ -16,8 +16,7 @@ def on_message(client, userdata, msg):
     if json_payload is not None and response is not None:
         session_id = response["session_id"]
         action = response["action"]
-        device = response["device_id"]
-        topic = f"/server/{device}/{session_id}/{action}"
+        topic = f"/server/{session_id}/{action}"
         client.publish(topic, json_payload)
 
 

@@ -18,12 +18,13 @@ from src.domain.models.register import Register
 from src.domain.models.session_error import SessionError
 from src.main.logs.logs import log_session, log_error
 
+import json
 
 class TopicManager:
 
     @staticmethod
     def call_service(session: Session):
-        if "server" == session.action:
+        if session is None or "server" == session.action:
             return None
         log_session(session=session.to_dict(), action="call_service")
         if "login" == session.action:
@@ -56,7 +57,7 @@ class TopicManager:
                 register = Register(username=payload['username'],
                                     email=payload['email'],
                                     password=payload['password'])
-                return user_register_composer(register)
+                return user_register_composer(session.device_id, session.session_id, session.action, register)
             except Exception:
                 return SessionError(session_id=session.session_id,
                                     device_id=session.device_id,
@@ -77,8 +78,8 @@ class TopicManager:
         elif "group_list" == session.action:
             try:
                 payload = session.payload
-                user = User(token=payload['token'], email=payload['email'], username=payload['username'])
-                return group_list_composer(session.device_id, session.session_id, session.action, user)
+                token = payload['token']
+                return group_list_composer(session.session_id, session.device_id, session.action, token)
             except Exception as error:
                 return SessionError(session_id=session.session_id,
                                     device_id=session.device_id,
