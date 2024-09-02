@@ -1,20 +1,21 @@
 import json
 import http.client
-from src.config.config import Config
 from src.domain.use_cases.central.central_conn import CentralConn as CentralConnInterface
 from src.main.logs.logs import log_critical, log_session
+from src.config.config import Config
 
 
 class CentralConn(CentralConnInterface):
 
     def request(self, params: any, action: str) -> any:
+        ip = Config.CW_CENTRAL_SERVICE_IP
+        port = int(Config.CW_CENTRAL_SERVICE_PORT)
         try:
             log_session(session=params, action=f'request - {action}')
             headers = {
                 'Content-type': 'application/json'
             }
-            ip = Config.CW_CENTRAL_SERVICE_IP
-            port = int(Config.CW_CENTRAL_SERVICE_PORT)
+
             print(ip, port)
             conn = http.client.HTTPConnection(host=ip, port=port)
             conn.request("POST", action, params, headers)
@@ -28,5 +29,5 @@ class CentralConn(CentralConnInterface):
             return json_data
         except Exception as e:
             log_critical(error=e, message=f'Falha na requisicao [Parametros = {params},'
-                                          f'URL = http://192.168.15.69:5000/{action}]')
+                                          f'URL = http://{ip}:{port}/{action}]')
             raise Exception(e) from e

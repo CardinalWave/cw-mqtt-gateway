@@ -17,11 +17,9 @@ class SocketHandler:
     def connect(self):
         while True:
             try:
-                ip = Config.CW_LOG_TRACE_IP
-                port = int(Config.CW_LOG_TRACE_PORT)
                 self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.sock.connect((ip, port))
-                print(f"Connected to {ip}:{port}")
+                self.sock.connect((self.host, self.port))
+                print(f"Connected to {self.host}:{self.port}")
                 break
             except (socket.error, ConnectionRefusedError) as e:
                 print(f"Connection failed: {e}. Retrying in 5 seconds...")
