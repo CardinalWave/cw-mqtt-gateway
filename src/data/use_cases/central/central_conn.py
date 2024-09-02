@@ -6,8 +6,6 @@ from src.main.logs.logs import log_critical, log_session
 
 
 class CentralConn(CentralConnInterface):
-    def __init__(self):
-        self.__url = Config.CW_CENTRAL_SERVICE
 
     def request(self, params: any, action: str) -> any:
         try:
@@ -15,7 +13,10 @@ class CentralConn(CentralConnInterface):
             headers = {
                 'Content-type': 'application/json'
             }
-            conn = http.client.HTTPConnection(host='192.168.15.69', port=5000)
+            ip = Config.CW_CENTRAL_SERVICE_IP
+            port = int(Config.CW_CENTRAL_SERVICE_PORT)
+            print(ip, port)
+            conn = http.client.HTTPConnection(host=ip, port=port)
             conn.request("POST", action, params, headers)
             conn.sock.settimeout(10)
             response = conn.getresponse()
