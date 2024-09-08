@@ -9,8 +9,15 @@ COPY  . /app
 
 WORKDIR /app
 
-# Define variáveis de ambiente para o IP e porta do MQTT
-ENV MQTT_BROKER_IP=192.168.12.1
+ENV MQTT_BROKER_IP=mqtt-mosquitto
 ENV MQTT_BROKER_PORT=1883
+ENV CW_CENTRAL_SERVICE=cw-central-service
+ENV CW_CENTRAL_SERVICE_IP=cw-central-service
+ENV CW_CENTRAL_SERVICE_PORT=5001
+ENV CW_LOG_TRACE=cw-log-trace
+ENV CW_LOG_TRACE_IP=cw-log-trace
+ENV CW_LOG_TRACE_PORT=5050
+
+EXPOSE 5000
 
 CMD [ "python", "run.py" ]
