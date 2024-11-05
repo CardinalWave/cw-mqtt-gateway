@@ -1,11 +1,11 @@
 # Imagem base do Python na versao 3.11
-FROM python:3.11-alpine
+FROM cardinal_wave-python-base-image
 
-COPY requirements.txt .
+#COPY requirements.txt .
 
-RUN apk add --no-cache git build-base libffi-dev
+#RUN apk add --no-cache git build-base libffi-dev
 
-RUN pip install -r requirements.txt
+#RUN pip install -r requirements.txt
 
 COPY  . /app
 
