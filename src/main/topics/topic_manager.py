@@ -1,4 +1,6 @@
 #pylint: disable=no-else-return
+from tokenize import group
+
 from src.main.composer.user.user_login_composer import user_login_composer
 from src.main.composer.user.user_register_composer import user_register_composer
 from src.main.composer.user.user_logout_composer import user_logout_composer
@@ -89,8 +91,9 @@ class TopicManager:
         elif "group_join" == session.action:
             try:
                 payload = session.payload
-                request = (payload['token'], payload["group_id"])
-                return group_join_composer(session.device_id, session.session_id, session.action, request)
+                token = payload['token']
+                group_id = payload['group_id']
+                return group_join_composer(session.device_id, session.session_id, session.action, token, group_id)
             except Exception:
                 return SessionError(session_id=session.session_id,
                                     device_id=session.device_id,
@@ -153,5 +156,4 @@ class TopicManager:
                 return session_error
 
         else:
-
             raise ValueError("Topico desconhecido")

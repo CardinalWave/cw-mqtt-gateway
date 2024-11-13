@@ -9,14 +9,14 @@ class GroupJoin(GroupJoinInterface):
     def __init__(self, central_conn: CentralConnInterface):
         self.__central_conn = central_conn
 
-    def group_join(self, group_user: dict) -> Group:
+    def group_join(self, obj_group: dict) -> Group:
 
-        user = group_user[1]
-        group = group_user[0]
+        token = obj_group.get("token")
+        group_id = obj_group.get("group_id")
 
         params = json.dumps({
-            'token': user.token,
-            'group_id': group.group_id
+            'token': token,
+            'group_id': group_id
         })
         json_data = self.__central_conn.request(params=params, action="/group/join")
         group_join = Group(group_id=json_data['payload']['group_id'],
