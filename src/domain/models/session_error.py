@@ -1,9 +1,13 @@
-#pylint: disable=trailing-comma-tuple
+#pylint: disable=trailing-comma-tuple, too-many-positional-arguments, too-many-arguments
 from src.presentation.interface.session_interface import SessionInterface
 
 
 class SessionError(SessionInterface):
-    def __init__(self, session_id: str, device_id: str, action: str, error_type: str, message: str) -> None:
+    def __init__(self, session_id: str,
+                 device_id: str,
+                 action: str,
+                 error_type: str,
+                 message: str) -> None:
         self.session_id = session_id
         self.device_id = device_id
         self.action = action
