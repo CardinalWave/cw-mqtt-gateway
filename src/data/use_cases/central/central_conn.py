@@ -1,17 +1,22 @@
+#pylint: disable=broad-exception-raised, useless-import-alias
+
 import json
 import http.client
-from src.domain.use_cases.central.central_conn import CentralConn as CentralConnInterface
-from src.main.logs.logs import log_critical, log_session
+from src.domain.use_cases.central.central_conn import CentralConnInterface as CentralConnInterface
 from src.config.config import Config
+from src.main.logs.logs import Log
 
 
 class CentralConn(CentralConnInterface):
+
+    def __init__(self):
+        self.__logger = Log()
 
     def request(self, params: any, action: str) -> any:
         ip = Config.CW_CENTRAL_SERVICE_IP
         port = int(Config.CW_CENTRAL_SERVICE_PORT)
         try:
-            log_session(session=params, action=f'request - {action}')
+            self.__logger.log_session(session=params, action=f'request - {action}')
             headers = {
                 'Content-type': 'application/json'
             }
@@ -28,6 +33,8 @@ class CentralConn(CentralConnInterface):
             conn.close()
             return json_data
         except Exception as e:
-            log_critical(error=e, message=f'Falha na requisicao [Parametros = {params},'
+            self.__logger.log_critical(error=e,
+                                       message=f'Falha na requisicao [Parametros'
+                                               f'= {params},'
                                           f'URL = http://{ip}:{port}/{action}]')
             raise Exception(e) from e

@@ -1,19 +1,21 @@
 import json
-from src.domain.use_cases.central.central_conn import CentralConn
+from src.domain.use_cases.central.central_conn import CentralConnInterface
 from src.domain.models.group import Group
 from src.domain.use_cases.group.group_list import GroupList as GroupListInterface
-from src.domain.models.users import User
+from src.main.logs.logs_interface import LogInterface
 
 
 class GroupList(GroupListInterface):
 
-    def __init__(self, central_conn: CentralConn):
+    def __init__(self, central_conn: CentralConnInterface, logger: LogInterface):
         self.__central_conn = central_conn
+        self.__logger = logger
 
     def group_list(self, token: str ) -> list[Group]:
         params = json.dumps({
             'token': token
         })
+        self.__logger.log_session(session=params, action="group_list")
         json_data = self.__central_conn.request(params=params, action="/group/list")
         formated_group_list = self.__format_list(json_list=json_data['payload'])
         return formated_group_list

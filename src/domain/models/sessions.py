@@ -1,5 +1,4 @@
 #pylint: disable=trailing-comma-tuple
-import json
 
 
 class Session:

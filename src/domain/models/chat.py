@@ -11,4 +11,3 @@ class Chat:
             "group_id": self.group_id,
             "message": self.message
         }
-

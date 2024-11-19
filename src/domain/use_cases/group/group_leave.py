@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class GroupLeave(ABC):
+class GroupLeaveInterface(ABC):
 
     @abstractmethod
-    def group_leave(self, token: str, group_id: str): pass
+    def group_leave(self, _input: dict): pass

@@ -1,3 +1,5 @@
+#pylint: disable=inconsistent-return-statements
+
 import json
 from src.domain.models.sessions import Session
 
