@@ -6,9 +6,9 @@ from src.config.config import Config
 class Log(LogInterface):
 
     def __init__(self):
-        self.service = Config.CW_CENTRAL_SERVICE
-        self.ip = Config.CW_CENTRAL_SERVICE_IP
-        self.port = Config.CW_CENTRAL_SERVICE_PORT
+        self.service = Config.CW_MQTT_GATEWAY
+        self.ip = Config.CW_MQTT_GATEWAY_IP
+        self.port = Config.CW_MQTT_GATEWAY_PORT
         self.local_service = f'{self.service}:{self.ip}:{self.port}'
 
     def log_session(self, session: any, action: str):

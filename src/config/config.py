@@ -9,6 +9,7 @@ class Config:
     MQTT_BROKER_IP = config.get('MQTT', 'IP')
     MQTT_BROKER_PORT = config.getint('MQTT', 'PORT')
     MQTT_TIMESTAMP = os.getenv('MQTT', 'MQTT_TIMESTAMP')
+
     CW_CENTRAL_SERVICE = config['CW_CENTRAL_SERVICE']['BaseURL']
     CW_CENTRAL_SERVICE_IP = config['CW_CENTRAL_SERVICE']['IP']
     CW_CENTRAL_SERVICE_PORT = config['CW_CENTRAL_SERVICE']['PORT']
@@ -16,6 +17,10 @@ class Config:
     CW_LOG_TRACE = config['CW_LOG_TRACE']['BaseURL']
     CW_LOG_TRACE_IP = config['CW_LOG_TRACE']['IP']
     CW_LOG_TRACE_PORT = config['CW_LOG_TRACE']['PORT']
+
+    CW_MQTT_GATEWAY = config['CW_MQTT_GATEWAY']['BaseURL']
+    CW_MQTT_GATEWAY_IP = config['CW_MQTT_GATEWAY']['IP']
+    CW_MQTT_GATEWAY_PORT = config['CW_MQTT_GATEWAY']['PORT']
 
     # From Dockerfile
     MQTT_BROKER_IP = os.getenv('MQTT_BROKER_IP', MQTT_BROKER_IP)
