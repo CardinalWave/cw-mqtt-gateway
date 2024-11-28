@@ -50,6 +50,7 @@ class TopicManager:
                                     error_type="Params",
                                     message="Erro ao realizar login").package()
                 self.__logger.log_error(error=session_error, message=session_error['payload'])
+                return session_error
         elif "logout" == session.action:
             try:
                 self.__logger.log_session(session=session.to_dict(), action=session.action)
@@ -63,6 +64,7 @@ class TopicManager:
                                     message="Erro ao realizar logout").package()
                 self.__logger.log_error(error=session_error,
                                         message=session_error['payload'])
+                return session_error
         elif "register" == session.action:
             try:
                 self.__logger.log_session(session=session.to_dict(),
@@ -83,6 +85,7 @@ class TopicManager:
                                     message="Erro ao registrar usuario").package()
                 self.__logger.log_error(error=session_error,
                                         message=session_error['payload'])
+                return session_error
         elif "group_create" == session.action:
             try:
                 self.__logger.log_session(session=session.to_dict(),
@@ -100,6 +103,7 @@ class TopicManager:
                                     message="Erro ao registrar grupo").package()
                 self.__logger.log_error(error=session_error,
                                         message=session_error['payload'])
+                return session_error
         elif "group_list" == session.action:
             try:
                 self.__logger.log_session(session=session.to_dict(),
@@ -118,6 +122,7 @@ class TopicManager:
                                     message="Erro ao listar grupos").package()
                 self.__logger.log_error(error=session_error,
                                         message=session_error['payload'])
+                return session_error
         elif "group_join" == session.action:
             try:
                 self.__logger.log_session(session=session.to_dict(),
@@ -136,9 +141,9 @@ class TopicManager:
                                     action=session.action,
                                     error_type="Params",
                                     message="Erro ao se inscrever").package()
-            self.__logger.log_error(error=session_error,
+                self.__logger.log_error(error=session_error,
                                     message=session_error['payload'])
-
+                return session_error
         elif "group_leave" == session.action:
             try:
                 self.__logger.log_session(session=session.to_dict(),
@@ -154,6 +159,7 @@ class TopicManager:
                                     message="Erro ao se inscrever").package()
                 self.__logger.log_error(error=session_error,
                                         message=session_error['payload'])
+                return session_error
         elif "chat_join" == session.action:
             try:
                 self.__logger.log_session(session=session.to_dict(),

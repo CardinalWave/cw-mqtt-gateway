@@ -13,6 +13,11 @@ class UserRegister(UserRegisterInterface):
         self.__logger = logger
 
     def register(self, register: Register) -> User:
+        self.__logger.log_session(session=[register.email,
+                                           register.username,
+                                           register.password],
+                                  action="user_register_data")
+
         params = json.dumps({
             "email": register.email,
             "username": register.username,
